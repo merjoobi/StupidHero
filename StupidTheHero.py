@@ -1,15 +1,39 @@
 import sys
-import es
 import random
 
+
 class Player:
-    def __init__(self,name):
+    def __init__(self,name,characterType):
         self.name = name;
-        self.maxhealth = 100;
-        self.health = self.maxhealth;
-        self.attack = 10;
-        self.gold = 0
-        self.flasks = 0
+
+        if (characterType == "Ranger"):
+            self.maxhealth = 90;
+            self.health = self.maxhealth;
+            self.attack = 7;
+            self.gold = 0;
+            self.flasks = 0;
+            pass
+        elif characterType == "Memester":
+            self.maxhealth = 150;
+            self.health = self.maxhealth;
+            self.attack = 22;
+            self.gold = 1;
+            self.flasks = 0;
+            pass
+        elif characterType == "Friesen":
+            self.maxhealth = 50;
+            self.health = self.maxhealth;
+            self.attack = 50;
+            self.gold = 0;
+            self.flasks = 0;
+            pass
+        else:
+            self.maxhealth = 100;
+            self.health = self.maxhealth;
+            self.attack = 10;
+            self.gold = 0
+            self.flasks = 0
+            pass
         
 class Troll:
     def __init__(self,name):
@@ -28,6 +52,8 @@ class AdeeshTheMirror:
         self.attack = 5;
         self.goldgain = 20;
 AdeeshTheMirrorG = AdeeshTheMirror("AdeeshTheMirror")
+
+
 
 def main():
     print("Hello traveler")
@@ -55,16 +81,18 @@ def start():
     print("A talking mirror asks:")
     print("What? How did you get in here? What's your name?")
     option = input(">> ")
+    print("What are you, b/c im PC bro?")
+    characterType = input(">> ")
     global PlayerG
-    PlayerG = Player(option)      
-    start()
+    PlayerG = Player(option,characterType)      
+    start1()
     
 def start1():
-    print("Well %s what are you doing here?")%PlayerG.name
-    print("Attack: %d")%PlayerG.attack
-    print("Health: %i/%o")%(PlayerG.health, PlayerG.maxhealth)
-    print("Gold: %d")%PlayerG.gold
-    print("Flasks: %d")%PlayerG.flasks
+    print("Well what are you doing here?" + PlayerG.name)
+    print("Attack:" + str(PlayerG.attack))
+    print("Health:" + str(PlayerG.health))
+    print("Gold:" + str(PlayerG.gold))
+    print("Flasks:" +str(PlayerG.flasks))
     print("1. I don't know, where the heck am I?")
     print("2. What are YOU doing here?")
     print("3. *Attack the Mirror*")
@@ -82,7 +110,7 @@ def start1():
         print("Are you stupid?")
         start1()
     start1()
-    
+
 def prefight():
     global enemy
     enemynum = random.randint(1,2)
@@ -93,9 +121,9 @@ def prefight():
     fight()
 
 def fight():
-    print("%s VERSUS %s")%(PlayerG.name, enemyname)
-    print("%s's HP: %d/%d  %s's HP: %i/%i")(PlayerG.name, PlayerG.health, PlayerG.maxhealth, enemy.name, enemy.health, enemy.maxhealth)
-    print("Potions %i\n")%PlayerG.flasks
+    print(PlayerG.name + "versus" + enemyname)
+    print(PlayerG.name + "HP:" + PlayerG.health + " Vs. " + enemy.name + "HP:" + enemy.health)
+    print("Potions" + PlayerG.flasks)
     print("1. Attack with fists")
     print("2. Drink flask")
     print("3. Walk out door, the mirror can't move after all")
@@ -115,9 +143,7 @@ def attack():
     if PlAttack == PlayerG.attack / 2:
         print ("You missed the mirror, wow that's hard to do")
         option = input
-        
-def drinkflask():
     
+main()
 
-    main()
         
