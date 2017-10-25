@@ -121,9 +121,15 @@ def prefight():
     fight()
 
 def fight():
+<<<<<<< HEAD
     print(PlayerG.name + "versus" + enemyname)
     print(PlayerG.name + "HP:" + PlayerG.health + " Vs. " + enemy.name + "HP:" + enemy.health)
     print("Potions" + PlayerG.flasks)
+=======
+    print("%s VERSUS %s" % PlayerG.name, enemyname)
+    print("%s's HP: %d/%d  %s's HP: %i/%i")(PlayerG.name, PlayerG.health, PlayerG.maxhealth, enemy.name, enemy.health, enemy.maxhealth)
+    print("Potions %i\n"% PlayerG.flasks)
+>>>>>>> origin/master
     print("1. Attack with fists")
     print("2. Drink flask")
     print("3. Walk out door, the mirror can't move after all")
@@ -138,12 +144,65 @@ def fight():
         fight()
         
 def attack():
-    PlAttack = random.randint(PlayerG.attack / 2, PlayerG.attack)
-    EnAttack = random.randint(enemy.attack / 2, enemy.attack)
-    if PlAttack == PlayerG.attack / 2:
+    PlayerAttack = random.randint(PlayerG.attack / 2, PlayerG.attack)
+    EnemyAttack = random.randint(enemy.attack / 2, enemy.attack)
+    if PlayerAttack == PlayerG.attack/2:
         print ("You missed the mirror, wow that's hard to do")
+<<<<<<< HEAD
         option = input
+=======
+    else:
+        enemy.health -= PlayerAttack
+        print ("You dealt %i damage!" %PlayerAttack)
+    option = input(' ')
+    if enemy.health <= 0:
+        win()
+    if EnemyAttack == enemy.attack/2:
+        print ("The enemy attack missed!")
+    else:
+        print ("The enemy attack dealt %i damage" % EnemyAttack)
+    option = input(' ')
+    if PlayerG.health <= 0:
+        die()
+    else:   
+        fight()
+       
+def drinkflask():
+    if PlayerG.flasks = 0:
+        print ("You have none!")
+        option = input(' ')
+        fight()
+    else:
+        PlayerG.health += 50
+        if PlayerG.health > PlayerG.maxhealth:
+            PlayerG.health = PlayerG.maxhealth
+        print ("You drank a potion!")
+    option = input(' ')
+    fight()
+
+def win():
+    enemy.health = enemy.maxhealth
+    print ("You have defeated the %s" % enemy.name)
+    print ("There was %i gold found in the corpse % enemy.goldgain)
+    option = input(' ')
+    start1()
+
+def dead():
+    print ("You died! Finally! You're so stupid! AHAHAHA"_
+    option = input(' ')
+    
+    
+    
+    
+    
+    
+    
+>>>>>>> origin/master
     
 main()
 
+<<<<<<< HEAD
+=======
+    main()
+>>>>>>> origin/master
         
