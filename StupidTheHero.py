@@ -1,6 +1,7 @@
 import sys
 import random
 
+weapons = {"Great Sword": 40}
 
 class Player:
     def __init__(self,name,characterType):
@@ -12,6 +13,8 @@ class Player:
             self.attack = 7;
             self.gold = 0;
             self.flasks = 0;
+            self.weap = ["Crappy Bow"]
+            self.curweap = ["Crappy Bow"]
             pass
         elif characterType == "Memester":
             self.maxhealth = 150;
@@ -19,6 +22,8 @@ class Player:
             self.attack = 22;
             self.gold = 1;
             self.flasks = 0;
+            self.weap = ["Drumstick"]
+            self.curweap = ["Drumstick"]
             pass
         elif characterType == "Friesen":
             self.maxhealth = 50;
@@ -26,6 +31,8 @@ class Player:
             self.attack = 50;
             self.gold = 0;
             self.flasks = 0;
+            self.weap = ["Keyboard Sword"]
+            self.curweap = ["Keyboard Sword"]
             pass
         else:
             self.maxhealth = 100;
@@ -33,7 +40,26 @@ class Player:
             self.attack = 10;
             self.gold = 0
             self.flasks = 0
+            self.weap = ["Stick"]
+            self.curweap = ["Stick"]
             pass
+      
+    @property
+    def attack(self):
+        attack = self.base_attack
+        if self.curweap == "Crappy Bow":
+            attack += 7
+            
+        if self.curweap == "Drumstick":
+            attack += 8
+            
+        if self.curweap == "Keyboard Sword":
+            attack += 10
+            
+        if self.curweap == "Stick":
+            attack += 5
+            
+        return attack
         
 class Troll:
     def __init__(self,name):
@@ -142,8 +168,43 @@ def attack():
     EnAttack = random.randint(enemy.attack / 2, enemy.attack)
     if PlAttack == PlayerG.attack / 2:
         print ("You missed the mirror, wow that's hard to do")
-        option = input
+    else:
+        enemy.health -= PlAttack
+        print "You deal %i damage!" % PlAttack
+        option = input(' ')
+    if EnAttack == enemy.attack/2:
+        print "The enemy missed hah!"
+    else:
+        print "The enemy deals %i damage!" % EnAttack
+    option = input(' ')
+    if PlayerG.health <= 0:
+        dead()
+    else:
+        fight()
     
-main()
+def drinkflask():
+    if PlayerG.flasks = 0:
+        print "You have none..."
+        option = input(' ')
+        fight()
+    else:
+        PlayerG.health += 69
+        if PlayerG.health > PlayerG.maxhealth:
+            PlayerG.health = PlayerG.maxhealth
+        print "You take a swig of the flask!"
+    option = input(' ')
+    fight()
+    
+def win():
+    
+def die():
+    
+def store():
+    
+    
+    
+    
+    
+ main()
 
         
