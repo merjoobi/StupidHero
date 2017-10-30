@@ -61,25 +61,41 @@ class Player:
             
         return attack
         
-class Troll:
+
+class Enemy:
     def __init__(self,name):
-        self.name = name;
-        self.maxhealth = 100;
-        self.health = self.maxhealth;
-        self.attack = 7;
-        self.goldgain = 10;
-TrollG = Troll("Troll")
-
-class AdeeshTheMirror:
-    def __init__(self,name):
-        self.name = name;
-        self.maxhealth = 100;
-        self.health = self.maxhealth;
-        self.attack = 5;
-        self.goldgain = 20;
-AdeeshTheMirrorG = AdeeshTheMirror("AdeeshTheMirror")
-
-
+        
+        if (name == "AdeeshTheMirror"):
+            self.name = "Adeesh The Mirror";
+            self.maxhealth = 90;
+            self.health = self.maxhealth;
+            self.attack = 7;
+            self.gold = 0;
+            self.flasks = 0;
+            pass
+        elif name == "HomieG":
+            self.name = "Homie G."
+            self.maxhealth = 150;
+            self.health = self.maxhealth;
+            self.attack = 22;
+            self.gold = 1;
+            self.flasks = 0;
+            pass
+        elif name == "CrazyDude":
+            self.name = "Crazy Dude"
+            self.maxhealth = 50;
+            self.health = self.maxhealth;
+            self.attack = 50;
+            self.gold = 0;
+            self.flasks = 0;
+            pass
+        else:
+            self.maxhealth = 100;
+            self.health = self.maxhealth;
+            self.attack = 10;
+            self.gold = 0
+            self.flasks = 0
+            pass
 
 def main():
     print("Hello traveler")
@@ -131,31 +147,23 @@ def start1():
         pass
     elif option == "3":
         print("What, what are you doing? Punching me isn't going to help you!")
-        prefight()
+        global enemy
+        enemy = Enemy("AdeeshTheMirror")
+        fight(enemy)
     else:
         print("Are you stupid?")
         start1()
-    start1()
 
-def prefight():
-    global enemy
-    enemynum = random.randint(1,2)
-    if enemynum == 1:
-        enemy = AdeeshTheMirrorG
-    else:
-        enemy = Troll
-    fight()
 
-def fight():
-    print(PlayerG.name + "versus" + enemyname)
-    print(PlayerG.name + "HP:" + PlayerG.health + " Vs. " + enemy.name + "HP:" + enemy.health)
-    print("Potions" + PlayerG.flasks)
-    print("1. Attack with fists")
+def fight(enemy):
+    print(PlayerG.name + " HP: " + str(PlayerG.health) + " Vs. " + enemy.name + " HP: " + str(enemy.health))
+    print("Potions: " + str(PlayerG.flasks))
+    print("1. Attack with weapon")
     print("2. Drink flask")
-    print("3. Walk out door, the mirror can't move after all")
+    print("3. Run away")
     option = input(">> ")
     if option == "1":
-        attack()
+        '''attack()'''
     elif option == "2":
         drinkflask()
     elif option == "3":
