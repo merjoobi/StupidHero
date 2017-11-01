@@ -1,5 +1,6 @@
 import sys
 import random
+import pickle
 
 weapons = {"Great Sword": 40}
 
@@ -134,10 +135,13 @@ def start1():
     print("Attack:" + str(PlayerG.attack))
     print("Health:" + str(PlayerG.health))
     print("Gold:" + str(PlayerG.gold))
+    print ("Current Weapons: %s")) PlayerG.curweap
     print("Flasks:" +str(PlayerG.flasks))
     print("1. I don't know, where the heck am I?")
     print("2. What are YOU doing here?")
     print("3. *Attack the Mirror*")
+    print("4. Inventory")
+    print("5. Store")
     option = input(">> ")
     if option == "1":
         print("You're in the high estate of King Patel")
@@ -150,9 +154,41 @@ def start1():
         global enemy
         enemy = Enemy("AdeeshTheMirror")
         fight(enemy)
+    elif option == "5":
+        store()
     else:
         print("Are you stupid?")
         start1()
+        
+def inventory():
+    print "Here's your backpack"
+    print "1. Use new weapon"
+    print "2. Nevermind"
+    if option == "1":
+        equip()
+    elif option == 'b':
+        start1()
+        
+def equip():
+    print "What do you want to equip?"
+    for weapon in PlayerG.weap:
+        print weapon
+    print "'B' to go back"
+    option = input(">> ")
+    if option == PlayerG.curweap:
+        print "You already have that!"
+        option = input(" ")
+        equip()
+    elif option == "b":
+        inventory()
+    elif option in PlayerG.weap:
+        PlayerG.curweap = option
+        print "You equiped %s" % option
+        option = input(" ")
+        equip()
+    else:
+        print "You don't have %s" % option
+        
 
 
 def fight(enemy):
@@ -204,10 +240,45 @@ def drinkflask():
     fight()
     
 def win():
+    enemy.health = enemy.maxhealth
+    PlayerG.gold += enemy.goldgain
+    print "You killed the %s" % enemy.name
+    print "You find %i gold in the enemy's body!" % enemy.goldgain
+    option = input(' ')
+    start1()
     
 def die():
+    print "You died! HAHA!"
+    option = input(' ')
+    
     
 def store():
+    print "Welcome to PatelMart!"
+    print "What do you want?"
+    print "1. A long stick"
+    print "Nevermind"
+    print "2. An empty wine glass"
+    print "3. The divine pencil"
+    option = input(' ')
+    
+    if option in weapons:
+        if PlayerG.gold >= weapons[option]:
+            PlayerG.gold -= weapons[option]
+            PlayerG.weap.append(option)
+            print "You purchased %s" % option
+            
+        else:
+            print "Are you trying to steal? Get more gold!"
+        option = input(' ')
+        store()
+        
+    elif option == "Nevermind"
+        start1()
+    
+    else:
+        print "We don't have that here sorry."
+        option = input(' ')
+        store()
     
     
     
