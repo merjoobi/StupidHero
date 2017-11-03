@@ -1,6 +1,12 @@
+'''Drew and Jeff and Adeesh's Adventure in a Magical Castle
+   PLTW Computer Science Block 1
+'''
+
 import sys
 import random
 import pickle
+
+'''Gotta be honest I have no idea what import pickle does I just saw it recommended somewhere'''
 
 weapons = {"Great Sword": 40}
 
